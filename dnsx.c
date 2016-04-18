@@ -639,7 +639,6 @@ int main(int argc, char **argv) {
   int opt;
   int daemonize = 0;
   int do_chroot = 0;
-  int do_drop_priviliges = 0;
 
   char nameserver_file[250] = {DEFAULT_NAMESERVER_FILE};
   char server_ip[250] = {DEFAULT_SERVER_IP};
@@ -678,10 +677,6 @@ int main(int argc, char **argv) {
     case 'p':
       server_port = atoi(optarg);
       if (server_port < 1) server_port = DEFAULT_SERVER_PORT;
-      break;
-     // drop priviliges
-    case 'P':
-      do_drop_priviliges = 1;
       break;
       // print version and exit
     case 'V':
@@ -722,10 +717,7 @@ int main(int argc, char **argv) {
   // bind to udp port 53
   bind_or_die(server_ip, server_port);
 
-  // maybe drop privileges    
-  if (do_drop_priviliges) {
-    drop_priviliges();
-  }
+  drop_priviliges();
 
   // go into main loop
   printf("starting server at: %s:%d\n", server_ip, server_port);
