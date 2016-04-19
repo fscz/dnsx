@@ -30,10 +30,11 @@ LDFLAGS= $(LDHARDENING)
 
 all: $(SRCFILES) libtsocks
 	$(CC) $(CFLAGS) $(SRCFILES) -o $(EXEC) -l$(TSOCKSLIB) -L$(STAGING_DIR)/usr/lib
+	install_name_tool -change libtsocks.dylib /usr/lib/libtsocks.dylib dnsx
 
 libtsocks:
 	make -C lib/tsocks
-	cp lib/tsocks/libtsocks.dylib* .
+	cp lib/tsocks/libtsocks.dylib .
 
 clean:
 	rm -f $(OBJFILES) $(EXEC)

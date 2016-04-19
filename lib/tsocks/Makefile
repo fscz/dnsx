@@ -24,7 +24,7 @@ VALIDATECONF = validateconf
 SCRIPT = tsocks
 SHLIB_MAJOR = 1
 SHLIB_MINOR = 8
-SHLIB = ${LIB_NAME}.${SHLIB_EXT}.${SHLIB_MAJOR}.${SHLIB_MINOR}
+SHLIB = ${LIB_NAME}.${SHLIB_EXT}
 
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
@@ -53,7 +53,6 @@ ${SAVE}: ${SAVE}.c
 
 ${SHLIB}: ${OBJS} ${COMMON}.o ${PARSER}.o
 	${SHCC} ${CFLAGS} ${INCLUDES} -nostdlib ${LDFLAGS} -o ${SHLIB} ${OBJS} ${COMMON}.o ${PARSER}.o ${DYNLIB_FLAGS} ${SPECIALLIBS} ${LIBS}
-	ln -sf ${SHLIB} ${LIB_NAME}.${SHLIB_EXT}
 
 %.so: %.c
 	${SHCC} ${CFLAGS} ${INCLUDES} -c ${CC_SWITCHES} $< -o $@
@@ -70,8 +69,8 @@ installscript:
 installlib:
 	${MKINSTALLDIRS} "${DESTDIR}${libdir}"
 	${INSTALL} ${SHLIB} ${DESTDIR}${libdir}
-	ln -sf ${SHLIB} ${DESTDIR}${libdir}/${LIB_NAME}.${SHLIB_EXT}.${SHLIB_MAJOR}
-	ln -sf ${LIB_NAME}.${SHLIB_EXT}.${SHLIB_MAJOR} ${DESTDIR}${libdir}/${LIB_NAME}.${SHLIB_EXT}
+	ln -sf ${SHLIB} ${DESTDIR}${libdir}/${LIB_NAME}.${SHLIB_EXT}
+	ln -sf ${LIB_NAME}.${SHLIB_EXT} ${DESTDIR}${libdir}/${LIB_NAME}.${SHLIB_EXT}
 
 installman:
 	${MKINSTALLDIRS} "${DESTDIR}${mandir}/man1"

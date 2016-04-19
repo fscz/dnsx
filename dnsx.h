@@ -39,7 +39,6 @@
 #define DEFAULT_NAMESERVER_FILE "conf/dnsx.conf"
 #define DEFAULT_CHROOT "/var/lib/dnsx"
 #define DEFAULT_TSOCKS_CONF "conf/tsocks.conf"
-#define DEFAULT_PID_FILE "dnsx.pid"
 
 #define HELP_STR ""\
     "syntax: dnsx [bpfPCcdlhV]\n"\
