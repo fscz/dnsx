@@ -1,6 +1,18 @@
 # dnsx
 Socksifying DNS Daemon for OSX / BSD, based on http://www.mulliner.org/collin/ttdnsd.php
 
+You can can run this daemon on localhost and point your DNS setting to it. 
+DNS Requests will be relayed through a Socks connection that you can specify
+with a config file. 
+
+Some options for the Socks daemon are:
+- ssh
+- tor
+
+The relayed DNS requests are finally resolved by DNS Servers that support DNS over TCP.
+OpenDNS provides such servers, two of which are readily configured in another config file.
+
+
 ### Building
 make
 
